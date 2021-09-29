@@ -1,0 +1,180 @@
+using System;
+using static System.Math;
+
+namespace ConsoleApp2
+{
+    class Program
+    {
+        private static void distanceBetweenPoints(double coordX1, double coordX2, double coordY1, double coordY2, ref double result)//расстояние между двумя точками
+        {
+            result = Sqrt(((coordX1 - coordX2) * (coordX1 - coordX2)) + ((coordY1 - coordY2) * (coordY1 - coordY2)));
+        }
+        private static void distanceBetweenPointsOnStraight2(double A, double B, double C, ref double AC, ref double BC, ref double summ)//расстояние между точками на прямой(номер 2)
+        {
+            AC = Abs(A - C);
+            BC = Abs(B - C);
+            summ = AC + BC;
+        }
+        private static void distanceBetweenPointsOnStraight3(double A, double B, double C, ref double AC, ref double BC, ref double proizv)//расстояние между точками на прямой(номер 3)
+        {
+            if (((C > A) && (C < B)) || ((C > B) && (C < A)))
+            {
+                proizv = AC * BC;
+            }
+            else Console.WriteLine("точка C лежит не между A и B!!!");
+        }
+        private static void rectangleOnPlace(double coordX1, double coordX2, double coordY1, double coordY2, ref double P, ref double S)//нахождение прямоугольника(номер4)
+        {
+            double CY = coordY2;
+            double DX = coordX2;
+            double shirina = 0;
+            distanceBetweenPoints(coordX1, coordX1, coordY1, CY, ref shirina);
+            double dlina = 0;
+            distanceBetweenPoints(coordX1, DX, coordY1, coordY1, ref dlina);
+            P = (dlina + shirina) * 2;
+            S = dlina * shirina;
+        }
+        private static void triangleOnPlace(double coordX1, double coordX2, double coordX3, double coordY1, double coordY2, double coordY3, ref double P, ref double S)//поиск треугольника по координатам(номер 5)
+        {
+            double dlina1 = 0;
+            double dlina2 = 0;
+            double dlina3 = 0;
+            distanceBetweenPoints(coordX1, coordX2, coordY1, coordY2, ref dlina1);
+            Console.WriteLine(dlina1);
+            distanceBetweenPoints(coordX2, coordX3, coordY2, coordY3, ref dlina2);
+            Console.WriteLine(dlina2);
+            distanceBetweenPoints(coordX1, coordX3, coordY1, coordY3, ref dlina3);
+            Console.WriteLine(dlina3);
+            P = dlina1 + dlina2 + dlina3;
+            double poluP = P / 2;
+            S = Sqrt(poluP * (poluP - dlina1) * (poluP - dlina2) * (poluP - dlina3));
+        }
+        static void Main(string[] args)
+        {
+            while(true)
+            {
+                var wrongInput = true;
+                Console.WriteLine("Введите номер задания:");
+                var input = Console.ReadLine();
+                int numberOfTask;
+                if (input == "нет")
+                {
+                    break;
+                }
+                if (!Int32.TryParse(input, out numberOfTask))
+                {
+                    Console.WriteLine("Сказано же, вводить числа!!!");
+                    wrongInput = false;
+                }
+                if (wrongInput)
+                {
+                    numberOfTask = Int32.Parse(input);
+                    switch (numberOfTask)
+                    {
+                        case 1:
+                            Console.WriteLine("Введите координаты X первой точки");//чтаем координаты и переводим в дабл
+                            var X1_1 = Console.ReadLine();
+                            var coordX1_1 = Convert.ToDouble(X1_1);
+                            Console.WriteLine("Введите координаты Y первой точки");
+                            var Y1_1 = Console.ReadLine();
+                            var coordY1_1 = Convert.ToDouble(Y1_1);
+                            Console.WriteLine("Введите координаты X второй точки");
+                            var X2_1 = Console.ReadLine();
+                            var coordX2_1 = Convert.ToDouble(X2_1);
+                            Console.WriteLine("Введите координаты Y второй точки");
+                            var Y2_1 = Console.ReadLine();
+                            var coordY2_1 = Convert.ToDouble(Y2_1);
+                            double result = 0;
+                            distanceBetweenPoints(coordX1_1, coordX2_1, coordY1_1, coordY2_1, ref result);//вызываем метод 1 и находим результат
+                            Console.WriteLine($"Расстояние между точками:{result}");//выводим результат
+                            break;
+                        case 2:
+                            Console.WriteLine("Введите координаты точки A");
+                            var A2 = Console.ReadLine();
+                            var coordA2 = Convert.ToDouble(A2);
+                            Console.WriteLine("Введите координаты точки B");
+                            var B2 = Console.ReadLine();
+                            var coordB2 = Convert.ToDouble(B2);
+                            Console.WriteLine("Введите координаты точки C");
+                            var C2 = Console.ReadLine();
+                            var coordC2 = Convert.ToDouble(C2);
+                            double AC2 = 0;
+                            double BC2 = 0;
+                            double summ2 = 0;
+                            distanceBetweenPointsOnStraight2(coordA2, coordB2, coordC2, ref AC2, ref BC2, ref summ2);
+                            Console.WriteLine($"Длина отрезка AC:{AC2}\n" +
+                                $"Длина отрезка BC:{BC2}\n" +
+                                $"Сумма длинн отрезков AC и BC:{summ2}");
+                            break;
+                        case 3:
+                            Console.WriteLine("Введите координаты точки A");
+                            var A3 = Console.ReadLine();
+                            var coordA3 = Convert.ToDouble(A3);
+                            Console.WriteLine("Введите координаты точки B");
+                            var B3 = Console.ReadLine();
+                            var coordB3 = Convert.ToDouble(B3);
+                            Console.WriteLine("Введите координаты точки C");
+                            var C3 = Console.ReadLine();
+                            var coordC3 = Convert.ToDouble(C3);
+                            double AC3 = 0;
+                            double BC3 = 0;
+                            double summ3 = 0;
+                            double proizv = 0;
+                            distanceBetweenPointsOnStraight2(coordA3, coordB3, coordC3, ref AC3, ref BC3, ref summ3);
+                            distanceBetweenPointsOnStraight3(coordA3, coordB3, coordC3, ref AC3, ref BC3, ref proizv);
+                            Console.WriteLine($"Произведение длин этих отрезков равно:{proizv}");
+                            break;
+                        case 4:
+                            Console.WriteLine("Введите координаты X первой точки");
+                            var X1_4 = Console.ReadLine();
+                            var coordX1_4 = Convert.ToDouble(X1_4);
+                            Console.WriteLine("Введите координаты Y первой точки");
+                            var Y1_4 = Console.ReadLine();
+                            var coordY1_4 = Convert.ToDouble(Y1_4);
+                            Console.WriteLine("Введите координаты X второй точки");
+                            var X2_4 = Console.ReadLine();
+                            var coordX2_4 = Convert.ToDouble(X2_4);
+                            Console.WriteLine("Введите координаты Y второй точки");
+                            var Y2_4 = Console.ReadLine();
+                            var coordY2_4 = Convert.ToDouble(Y2_4);
+                            double S = 0;
+                            double P = 0;
+                            rectangleOnPlace(coordX1_4, coordX2_4, coordY1_4, coordY2_4, ref P, ref S);
+                            Console.WriteLine($"Периметр данного прямоугольника равен:{P}\n" +
+                                $"Площадь данного прямоугольника равна{S}");
+                            break;
+                        case 5:
+                            Console.WriteLine("Введите координаты X первой вершины");
+                            var X1_5 = Console.ReadLine();
+                            var coordX1_5 = Convert.ToDouble(X1_5);
+                            Console.WriteLine("Введите координаты Y первой вершины");
+                            var Y1_5 = Console.ReadLine();
+                            var coordY1_5 = Convert.ToDouble(Y1_5);
+                            Console.WriteLine("Введите координаты X второй вершины");
+                            var X2_5 = Console.ReadLine();
+                            var coordX2_5 = Convert.ToDouble(X2_5);
+                            Console.WriteLine("Введите координаты Y второй вершины");
+                            var Y2_5 = Console.ReadLine();
+                            var coordY2_5 = Convert.ToDouble(Y2_5);
+                            Console.WriteLine("Введите координаты X третьей вершины");
+                            var X3_5 = Console.ReadLine();
+                            var coordX3_5 = Convert.ToDouble(X3_5);
+                            Console.WriteLine("Введите координаты Y трейтьей вершины");
+                            var Y3_5 = Console.ReadLine();
+                            var coordY3_5 = Convert.ToDouble(Y3_5);
+                            double S_5 = 0;
+                            double P_5 = 0;
+                            triangleOnPlace(coordX1_5, coordX2_5, coordX3_5, coordY1_5, coordY2_5, coordY3_5, ref S_5, ref P_5);
+                            Console.WriteLine($"Периметр данного треугольника равен:{P_5}\n" +
+                                $"Площадь данного треугольника равна{S_5}");
+                            break;
+                    }
+                    if ((numberOfTask < 1) || (numberOfTask > 5))       //идет проверка на то, что введенное число соответствует номеру задания
+                    {
+                        Console.WriteLine("В лабораторной работе номер 1 всего 5 заданий!!!");      //вывод сообщения с ошибкой
+                    }
+                }
+            }
+        }
+    }
+}
