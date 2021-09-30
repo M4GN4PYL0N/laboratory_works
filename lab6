@@ -1,0 +1,167 @@
+using System;
+using static System.Math;
+namespace ConsoleApp3
+{
+    class Program
+    {
+        private static void Switch2Numbers(double a_1, double b_1, ref double ar_1, ref double br_1)//1 задание
+        {
+            ar_1 = b_1;
+            br_1 = a_1;
+        }
+        private static void Switch3Numbers(double a_2, double b_2, double c_2, ref double ar_2, ref double br_2, ref double cr_2)//2 задание
+        {
+            br_2 = a_2;
+            cr_2 = b_2;
+            ar_2 = c_2;
+        }
+        private static void Switch3Numbers_3(double a_3, double b_3, double c_3, ref double ar_3, ref double br_3, ref double cr_3)//3 задание
+        {
+            cr_3 = a_3;
+            br_3 = c_3;
+            ar_3 = b_3;
+        }
+        private static void Equation_4(double x, ref double result)//4 задание
+        {
+            result = 3 * Pow(x, 6) - 6 * Pow(x, 2) - 7;
+        }
+        private static void Equation_5(double x, ref double result)//5 задание
+        {
+            result = 4 * (Pow(x - 3, 6)) - 7 * (Pow(x - 3, 3)) + 2;
+        }
+        private static void Degree_6(double a, ref double c)//6 задание
+        {
+            c = a * a;
+            a = c * c;
+            c = a * a;
+        }
+        private static void Degree_7(double a, double b, ref double c)//7 задание
+        {
+            c = a;
+            a = c * c;
+            c *= a;
+            b = a * c;
+            a = b * b;
+            c = a * b;
+        }
+        static void Main(string[] args)
+        {
+            while (true)//бесконечный цикл, чтобы не завершалось
+            {
+                var wrongInput = true;
+                Console.WriteLine("Введите номер задания");
+                var input = Console.ReadLine();
+                int numberOfTask;
+                double numberProverka;
+                if (input == "нет")//проверка на заверешние работы пользователем
+                {
+                    break;
+                }
+                if (!Int32.TryParse(input, out numberOfTask))
+                {
+                    if (!Double.TryParse(input, out numberProverka))
+                    {
+                        Console.WriteLine("сказано же вводить числа!!!");//вывод при ошибке
+                    }
+                    else Console.WriteLine("номера задания не дробные)");
+                    wrongInput = false;
+                }
+                if (wrongInput)
+                {
+                    numberOfTask = Int32.Parse(input);
+                    switch (numberOfTask)
+                    {
+                        case 1:
+                            Console.WriteLine("Введите число А:");
+                            var read = Console.ReadLine();
+                            double a_1 = double.Parse(read);
+                            Console.WriteLine("Введите число B:");  //вводятся числа и преобразуются в дабл
+                            read = Console.ReadLine();
+                            double b_1 = double.Parse(read);
+                            double ar_1 = 0;
+                            double br_1 = 0;
+                            Switch2Numbers(a_1,b_1, ref ar_1, ref br_1);//вызов метода с решением
+                            Console.WriteLine($"Число А:{ar_1}\n" +
+                                $"Число B:{br_1}");
+                            break;
+                        case 2:
+                            Console.WriteLine("Введите число А:");
+                            read = Console.ReadLine();
+                            double a_2 = double.Parse(read);
+                            Console.WriteLine("Введите число B:");  //вводятся числа и преобразуются в дабл
+                            read = Console.ReadLine();
+                            double b_2 = double.Parse(read);
+                            Console.WriteLine("Введите число C:"); 
+                            read = Console.ReadLine();
+                            double c_2 = double.Parse(read);
+                            double ar_2 = 0;
+                            double br_2 = 0;
+                            double cr_2 = 0;
+                            Switch3Numbers(a_2, b_2, c_2, ref ar_2, ref br_2, ref cr_2);//вызов метода с решением
+                            Console.WriteLine($"Число А:{ar_2}\n" +
+                                $"Число B:{br_2}\n" +
+                                $"Число C:{cr_2}");//вывод результата
+                            break;
+                        case 3:
+                            Console.WriteLine("Введите число А:");
+                            read = Console.ReadLine();
+                            double a_3 = double.Parse(read);
+                            Console.WriteLine("Введите число B:");  //вводятся числа и преобразуются в дабл
+                            read = Console.ReadLine();
+                            double b_3 = double.Parse(read);
+                            Console.WriteLine("Введите число C:");  
+                            read = Console.ReadLine();
+                            double c_3 = double.Parse(read);
+                            double ar_3 = 0;
+                            double br_3 = 0;
+                            double cr_3 = 0;
+                            Switch3Numbers_3(a_3, b_3, c_3, ref ar_3, ref br_3, ref cr_3);//вызов метода с решением
+                            Console.WriteLine($"Число А:{ar_3}\n" +
+                                $"Число B:{br_3}\n" +
+                                $"Число C:{cr_3}");//вывод результата
+                            break;
+                        case 4:
+                            Console.WriteLine("Введите значение Х:");//вводятся числа и преобразуются в дабл
+                            read = Console.ReadLine();
+                            double x_4 = double.Parse(read);
+                            double result_4 = 0;
+                            Equation_4(x_4, ref result_4);//вызов метода с решением
+                            Console.WriteLine($"Результат уравнения равен:{result_4}");//вывод результата
+                            break;
+                        case 5:
+                            Console.WriteLine("Введите значение Х:");//вводятся числа и преобразуются в дабл
+                            read = Console.ReadLine();
+                            double x_5 = double.Parse(read);
+                            double result_5 = 0;
+                            Equation_5(x_5, ref result_5);//вызов метода с решением
+                            Console.WriteLine($"Результат уравнения равен:{result_5}");//вывод результата
+                            break;
+                        case 6:
+                            Console.WriteLine("Введите значение A:");//вводятся числа и преобразуются в дабл
+                            read = Console.ReadLine();
+                            double a_6 = double.Parse(read);
+                            double c_6 = 0;
+                            Degree_6(a_6, ref c_6);//вызов метода с решением
+                            Console.WriteLine($"A^8={c_6}");//вывод результата
+                            break;
+                        case 7:
+                            Console.WriteLine("Введите значение A:");//вводятся числа и преобразуются в дабл
+                            read = Console.ReadLine();
+                            double a_7 = double.Parse(read);
+                            double b_7 = 0;
+                            double c_7 = 0;
+                            Degree_7(a_7, b_7, ref c_7);//вызов метода с решением
+                            Console.WriteLine($"A^15={c_7}");//вывод результата
+                            break;
+                    }
+                    if ((numberOfTask < 1) || (numberOfTask > 7)) //идет проверка на то, что введенное число соответствует номеру задания
+
+                    {
+                        Console.WriteLine("В лабораторной работе номер 5 всего 7 заданий!!!"); //вывод сообщения с ошибкой
+
+                    }
+                }
+            }
+        }
+    }
+}
