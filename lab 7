@@ -1,0 +1,154 @@
+using System;
+using static System.Math;
+namespace ConsoleApp3
+{
+    class Program
+    {
+        private static void PiAngle(double a_1, ref double result1)//1 задание
+        {
+            result1 = a_1 * PI / 180;
+        }
+        private static void PiAngleReverse(double a_2, ref double result2)//2 задание
+        {
+            result2 = a_2 * 180;
+        }
+        private static void Switch3Numbers_3(double a_3, double b_3, double c_3, ref double d_3, ref double e_3)//3 задание
+        {
+            d_3 = b_3 / a_3;
+            e_3 = d_3 * c_3;
+        }
+        private static void Equation_4(double V_1, double V_2, double T, ref double result)//4 задание
+        {
+            double x1 = V_1 * T;
+            double x2 = V_2 * T;
+            result = x1 + x2;
+        }
+        private static void Equation_5(double A, double B, ref double result)//5 задание
+        {
+            result = -B/A;
+        }
+        private static void Degree_6(double a1_6, double b1_6, double c1_6, double a2_6, double b2_6, double c2_6, ref double resultX, ref double resultY)//6 задание
+        {
+            resultY = ((a2_6 * c1_6) - (a1_6 * c2_6)) / ((a2_6 * b1_6) - (a1_6 * b2_6));
+            resultX = (c1_6 - (b1_6 * resultY)) / a1_6;
+        }
+        static void Main(string[] args)
+        {
+            while (true)//бесконечный цикл, чтобы не завершалось
+            {
+                var wrongInput = true;
+                Console.WriteLine("Введите номер задания");
+                var input = Console.ReadLine();
+                int numberOfTask;
+                double numberProverka;
+                if (input == "нет")//проверка на заверешние работы пользователем
+                {
+                    break;
+                }
+                if (!Int32.TryParse(input, out numberOfTask))
+                {
+                    if (!Double.TryParse(input, out numberProverka))
+                    {
+                        Console.WriteLine("сказано же вводить числа!!!");
+                    }
+                    else Console.WriteLine("номера задания не дробные)");
+                    wrongInput = false;
+                }
+                if (wrongInput)
+                {
+                    numberOfTask = Int32.Parse(input);
+                    switch (numberOfTask)
+                    {
+                        case 1:
+                            Console.WriteLine("Введите угол в градусах:");
+                            var read = Console.ReadLine();
+                            double a_1 = double.Parse(read);
+                            double result1 = 0;
+                            PiAngle(a_1, ref result1);
+                     Console.WriteLine($"Этот угол в радианах равен:{result1}");
+                            break;
+                        case 2:
+                            Console.WriteLine("Введите угол в радианах:");
+                            read = Console.ReadLine();
+                            double a_2 = double.Parse(read);
+                            double result2 = 0;
+                            PiAngleReverse(a_2, ref result2);
+                            Console.WriteLine($"Этот угол в градусах равен:{result2}");
+                            break;
+                        case 3:
+                            Console.WriteLine("Введите количество конфет в кг:");
+                            read = Console.ReadLine();
+                            double a_3 = double.Parse(read);
+                            Console.WriteLine("Введите стоимость этих конфет:");
+                             read = Console.ReadLine();
+                            double b_3 = double.Parse(read);
+                            Console.WriteLine("Введите количество конфет, которое нужно:");
+                            read = Console.ReadLine();
+                            double c_3 = double.Parse(read);
+                            double d_3 = 0;
+                            double e_3 = 0;
+                            Switch3Numbers_3(a_3, b_3, c_3, ref d_3, ref e_3);//вызов метода с решением
+                            Console.WriteLine($"Стоимость 1 кг этих конфет:{d_3} рублей\n" +
+                            $"Стоимость {c_3} кг этих конфет:{e_3} рублей");//вывод результата
+                            break;
+                        case 4:
+                            Console.WriteLine("Введите скорость 1 автомобиля:");
+                             read = Console.ReadLine();
+                            double V_1 = double.Parse(read);
+                            Console.WriteLine("Введите скорость 2 автомобиля:");
+                            read = Console.ReadLine();
+                            double V_2 = double.Parse(read);
+                            Console.WriteLine("Введите время, которое они едут:");
+                            read = Console.ReadLine();
+                            double T = double.Parse(read);
+                            double result_4 = 0;
+                            Equation_4(V_1, V_2, T, ref result_4);//вызов метода с решением
+                            Console.WriteLine($"Расстояние между ними через {T} часа:{ result_4}");
+                     break;
+                        case 5:
+                            Console.WriteLine("Введите значение A:");
+                             read = Console.ReadLine();
+                            double A_5 = double.Parse(read);
+                            Console.WriteLine("Введите значение B:");
+                            read = Console.ReadLine();
+                            double B_5 = double.Parse(read);
+                            double result_5 = 0;
+                            Equation_5(A_5, B_5, ref result_5);//вызов метода с решением
+                            Console.WriteLine($"X равен:{result_5}");//вывод результата
+                     break;
+                        case 6:
+                            Console.WriteLine("Введите значение A1:");
+                             read = Console.ReadLine();
+                            double a1_6 = double.Parse(read);
+                            Console.WriteLine("Введите значение B1:");
+                            read = Console.ReadLine();
+                            double b1_6 = double.Parse(read);
+                            Console.WriteLine("Введите значение C1:");
+                            read = Console.ReadLine();
+                            double c1_6 = double.Parse(read);
+                            Console.WriteLine("Введите значение A2:");
+                            read = Console.ReadLine();
+                            double a2_6 = double.Parse(read);
+                            Console.WriteLine("Введите значение B2:");
+                            read = Console.ReadLine();
+                            double b2_6 = double.Parse(read);
+                            Console.WriteLine("Введите значение C2:");
+                            read = Console.ReadLine();
+                            double c2_6 = double.Parse(read);
+                            double resultX_6 = 0;
+                            double resultY_6 = 0;
+
+                            Degree_6(a1_6, b1_6, c1_6, a2_6, b2_6, c2_6, ref resultX_6, ref resultY_6);//вызов метода с решением
+                            Console.WriteLine($"X равен={resultX_6}\n" +
+                                $"Y равен={resultY_6}");//вывод результата
+                            break;
+                    }
+                    if ((numberOfTask < 1) || (numberOfTask > 7)) 
+                {
+                        Console.WriteLine("В лабораторной работе номер 7 всего 6 заданий!!!"); //вывод сообщения с ошибкой
+ }
+                }
+            }
+        }
+    }
+}
