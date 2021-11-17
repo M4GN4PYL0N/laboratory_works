@@ -1,0 +1,136 @@
+using System;
+using static System.Math;
+namespace ConsoleApp3
+{
+    class Program
+    {
+        private static void PiAngle(double a_1, ref double result1)//1 задание
+        {
+            if (a_1 >= 0)
+            {
+                var resultX = a_1 / 1024;
+                result1 = Math.Ceiling(resultX);
+                //result1 = Math.Truncate(resultX);
+            }
+            else Console.WriteLine("Байты положительные!!!");
+        }
+        private static void PiAngleReverse(double a_2, double b_2, ref double result2)//2 задание
+        {
+            if ((a_2 >= 0) && (b_2 >= 0))
+            {
+                var c = a_2 / b_2;
+                result2 = Math.Floor(c);
+            }
+            else Console.WriteLine("Отрезки положительные!!!");
+        }
+        private static void RazmerOstatka(double a_2, double b_2, ref double result2)//2 задание
+        {
+            if ((a_2 >= 0) && (b_2 >= 0))
+            {
+                var c = a_2 / b_2;
+                var result_promej = Math.Floor(c);
+                result2 = a_2 - (result_promej * b_2);
+            }
+            else Console.WriteLine("Отрезки положительные!!!");
+        }
+        private static void Equation_4(double a_1, ref double result_4)//4 задание
+        {
+            double b = a_1/10;
+            double X1 = Math.Truncate(b);
+            string X = X1.ToString();
+            string stroka = a_1.ToString();
+            string Y = stroka.Substring(stroka.Length - 1);
+            Console.WriteLine($"Зеркальное число:{Y}{X}");
+            
+        }
+        private static void Equation_5(double a_5, ref double result_5)//5 задание
+        {
+            double b = a_5 / 100;
+            double X1 = Math.Truncate(b);
+            string X = X1.ToString();
+            string stroka = a_5.ToString();
+            string Y = stroka.Substring(stroka.Length - 2);
+            Console.WriteLine($"Число после манипуляций будет:{Y}{X}");
+
+        }
+        static void Main(string[] args)
+        {
+            while (true)//бесконечный цикл, чтобы не завершалось
+            {
+                var wrongInput = true;
+                Console.WriteLine("Введите номер задания");
+                var input = Console.ReadLine();
+                int numberOfTask;
+                double numberProverka;
+                if (input == "нет")//проверка на заверешние работы пользователем
+                {
+                    break;
+                }
+                if (!Int32.TryParse(input, out numberOfTask))
+                {
+                    if (!Double.TryParse(input, out numberProverka))
+                    {
+                        Console.WriteLine("сказано же вводить числа!!!");
+                    }
+                    else Console.WriteLine("номера задания не дробные)");
+                    wrongInput = false;
+                }
+                if (wrongInput)
+                {
+                    numberOfTask = Int32.Parse(input);
+                    switch (numberOfTask)
+                    {
+                        case 1:
+                            Console.WriteLine("Введите размер файла в байтах");
+                            var read = Console.ReadLine();
+                            double a_1 = double.Parse(read);
+                            double result1 = 0;
+                            PiAngle(a_1, ref result1);
+                            Console.WriteLine($"Полных килобайтов:{result1}");
+                            break;
+                        case 2:
+                            Console.WriteLine("Введите размер отрезка А:");
+                            read = Console.ReadLine();
+                            double a_2 = double.Parse(read);
+                            Console.WriteLine("Введите размер отрезка B:");
+                            read = Console.ReadLine();
+                            double b_2 = double.Parse(read);
+                            double result2 = 0;
+                            PiAngleReverse(a_2, b_2, ref result2);
+                            Console.WriteLine($"На отрезке А может быть {result2} отрезков B");
+                            break;
+                        case 3:
+                            Console.WriteLine("Введите размер отрезка А:");
+                            read = Console.ReadLine();
+                            double a_3 = double.Parse(read);
+                            Console.WriteLine("Введите размер отрезка B:");
+                            read = Console.ReadLine();
+                            double b_3 = double.Parse(read);
+                            double result3 = 0;
+                            RazmerOstatka(a_3, b_3, ref result3);
+                            Console.WriteLine($"На отрезке А останется {result3} места");
+                            break;
+                        case 4:
+                            Console.WriteLine("Введите 2значное число:");
+                            read = Console.ReadLine();
+                            double a_4 = int.Parse(read);
+                            double result_4 = 0;
+                            Equation_4(a_4, ref result_4);//вызов метода с решением
+                            break;
+                        case 5:
+                            Console.WriteLine("Введите 3значное число:");
+                            read = Console.ReadLine();
+                            double a_5 = int.Parse(read);
+                            double result_5 = 0;
+                            Equation_5(a_5, ref result_5);//вызов метода с решением
+                            break;
+                    }
+                    if ((numberOfTask < 1) || (numberOfTask > 7))
+                    {
+                        Console.WriteLine("В лабораторной работе номер 7 всего 6 заданий!!!"); //вывод сообщения с ошибкой
+                    }
+                }
+            }
+        }
+    }
+}
