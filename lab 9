@@ -1,0 +1,220 @@
+using System;
+using static System.Math;
+namespace ConsoleApp3
+{
+    class Program
+    {
+        private static void FIRST(double a_1, ref double result1)//1 задание
+        {
+            if (a_1 >= 0)
+            {
+                var resultX = a_1 / 60;
+                var resultY = Math.Floor(resultX);
+                result1 = a_1 - (resultY * 60); ;
+            }
+            else Console.WriteLine("Время не отрицательное");
+        }
+        private static void SECOND(double a_2, ref double result2)//2 задание
+        {
+            if (a_2 > 0)
+            {
+                var resultX = a_2 / 7;
+                var resultY = Math.Floor(resultX);
+                result2 = a_2 - (resultY * 7); ;
+            }
+            else Console.WriteLine("Дни положительные!!!");
+        }
+        private static void THIRD(double a_3, double b_3, ref double result3)//2 задание
+        {
+            if ((a_3 > 0) && (b_3 > 0))
+            {
+                var resultX = a_3 / 7;
+                var resultY = Math.Floor(resultX);
+                var resultA = (a_3 - (resultY * 7)) + (b_3 - 1);
+                if (resultA > 7)
+                {
+                    var XXX = resultA / 7;
+                    var YYY = Math.Floor(XXX);
+                    result3 = resultA - (YYY * 7);
+                }
+                else result3 = resultA;
+            }
+            else Console.WriteLine("Дни положительные!!!");
+        }
+        private static void FOURTH(double a_4, double b_4, double c_4)//4 задание
+        {
+            var i = a_4/c_4;
+            i = Math.Floor(i);
+            var k = b_4/c_4;
+            k = Math.Floor(k);
+            var j = 0;
+            var p = 0;
+            var kol_vo = 0;
+            while (i>j)
+            {
+                while(k>p)
+                {                    
+                    p++;
+                    kol_vo++;
+                }
+                j++;
+                p = 0;
+            }
+            var ostatok = (a_4 * b_4) - (kol_vo * (c_4 * c_4));
+            Console.WriteLine($"Количество квадратов, которые входят в прямоугольник:{kol_vo}");
+            Console.WriteLine($"Оставшаяся площадь:{ostatok}");
+
+        }
+        private static void FIFTH(double x, ref double result_5)//5 задание
+        {
+            if (x < 101)
+            {
+                result_5 = 1;
+            }
+            else
+            {
+                if (((x % 10) > 0) || ((x % 100>0)))
+                {
+                    result_5 = Math.Floor(x / 100) + 1;
+                }
+                else result_5 = x / 100;
+            }
+        }
+        static void Main(string[] args)
+        {
+            while (true)//бесконечный цикл, чтобы не завершалось
+            {
+                var wrongInput = true;
+                Console.WriteLine("Введите номер задания");
+                var input = Console.ReadLine();
+                int numberOfTask;
+                double numberProverka;
+                if (input == "нет")//проверка на заверешние работы пользователем
+                {
+                    break;
+                }
+                if (!Int32.TryParse(input, out numberOfTask))
+                {
+                    if (!Double.TryParse(input, out numberProverka))
+                    {
+                        Console.WriteLine("сказано же вводить числа!!!");
+                    }
+                    else Console.WriteLine("номера задания не дробные)");
+                    wrongInput = false;
+                }
+                if (wrongInput)
+                {
+                    numberOfTask = Int32.Parse(input);
+                    switch (numberOfTask)
+                    {
+                        case 1:
+                            Console.WriteLine("Введите время:");
+                            var read = Console.ReadLine();
+                            double a_1 = double.Parse(read);
+                            double result1 = 0;
+                            FIRST(a_1, ref result1);
+                            Console.WriteLine($"с последней минуты прошло:{result1} секунд");
+                            break;
+                        case 2:
+                            Console.WriteLine("Введите день");
+                            read = Console.ReadLine();
+                            double a_2 = double.Parse(read);
+                            double result2 = 0;
+                            SECOND(a_2, ref result2);
+                            if (result2 == 0)
+                            {
+                                Console.WriteLine($"Это воскресенье {result2}");
+                            }
+                            if (result2 == 1)
+                            {
+                                Console.WriteLine($"Это понедельник {result2}");
+                            }
+                            if (result2 == 2)
+                            {
+                                Console.WriteLine($"Это вторник {result2}");
+                            }
+                            if (result2 == 3)
+                            {
+                                Console.WriteLine($"Это среда {result2}");
+                            }
+                            if (result2 == 4)
+                            {
+                                Console.WriteLine($"Это четверг {result2}");
+                            }
+                            if (result2 == 5)
+                            {
+                                Console.WriteLine($"Это пятница {result2}");
+                            }
+                            if (result2 == 6)
+                            {
+                                Console.WriteLine($"Это суббота {result2}");
+                            }
+                            break;
+                        case 3:
+                            Console.WriteLine("Введите день K:");
+                            read = Console.ReadLine();
+                            double a_3 = double.Parse(read);
+                            Console.WriteLine("Введите день N:");
+                            read = Console.ReadLine();
+                            double b_3 = double.Parse(read);
+                            double result3 = 0;
+                            THIRD(a_3, b_3, ref result3);
+                            if (result3 == 1)
+                            {
+                                Console.WriteLine($"Это понедельник {result3}");
+                            }
+                            if (result3 == 2)
+                            {
+                                Console.WriteLine($"Это вторник {result3}");
+                            }
+                            if (result3 == 3)
+                            {
+                                Console.WriteLine($"Это среда {result3}");
+                            }
+                            if (result3 == 4)
+                            {
+                                Console.WriteLine($"Это четверг {result3}");
+                            }
+                            if (result3 == 5)
+                            {
+                                Console.WriteLine($"Это пятница {result3}");
+                            }
+                            if (result3 == 6)
+                            {
+                                Console.WriteLine($"Это суббота {result3}");
+                            }
+                            if (result3 == 7)
+                            {
+                                Console.WriteLine($"Это воскресенье {result3}");
+                            }
+                            break;
+                        case 4:
+                            Console.WriteLine("Введите длину прямогульника:");
+                            read = Console.ReadLine();
+                            double a_4 = double.Parse(read);
+                            Console.WriteLine("Введите ширину прямоугольника:");
+                            read = Console.ReadLine();
+                            double b_4 = double.Parse(read);
+                            Console.WriteLine("Введите сторону квадрата:");
+                            read = Console.ReadLine();
+                            double c_4 = double.Parse(read);
+                            FOURTH(a_4, b_4, c_4);//вызов метода с решением
+                            break;
+                        case 5:
+                            Console.WriteLine("Введите год:");
+                            read = Console.ReadLine();
+                            double x = int.Parse(read);
+                            double result_5 = 0;
+                            FIFTH(x, ref result_5);//вызов метода с решением
+                            Console.WriteLine($"Это будет {result_5} столетие:");
+                            break;
+                    }
+                    if ((numberOfTask < 1) || (numberOfTask > 7))
+                    {
+                        Console.WriteLine("В лабораторной работе номер 7 всего 6 заданий!!!"); //вывод сообщения с ошибкой
+                    }
+                }
+            }
+        }
+    }
+}
