@@ -17,11 +17,12 @@ namespace ConsoleApp3
             d_3 = b_3 / a_3;
             e_3 = d_3 * c_3;
         }
-        private static void Equation_4(double V_1, double V_2, double T, ref double result)//4 задание
+        private static void Equation_4(double V_1, double V_2, double S_2, double T, ref double result)//4 задание
         {
+
             double x1 = V_1 * T;
             double x2 = V_2 * T;
-            result = x1 + x2;
+            result = x1 + x2 + S_2;
         }
         private static void Equation_5(double A, double B, ref double result)//5 задание
         {
@@ -29,8 +30,17 @@ namespace ConsoleApp3
         }
         private static void Degree_6(double a1_6, double b1_6, double c1_6, double a2_6, double b2_6, double c2_6, ref double resultX, ref double resultY)//6 задание
         {
-            resultY = ((a2_6 * c1_6) - (a1_6 * c2_6)) / ((a2_6 * b1_6) - (a1_6 * b2_6));
-            resultX = (c1_6 - (b1_6 * resultY)) / a1_6;
+            var g = ((a2_6 * c1_6) - (a1_6 * c2_6));
+            if (g == 0)
+            {
+                resultY = ((a2_6 * c1_6) - (a1_6 * c2_6)) / Abs(((a2_6 * b1_6) - (a1_6 * b2_6)));
+                resultX = (c1_6 - (b1_6 * resultY)) / a1_6;
+            }
+            else
+            {
+                resultY = ((a2_6 * c1_6) - (a1_6 * c2_6)) / ((a2_6 * b1_6) - (a1_6 * b2_6));
+                resultX = (c1_6 - (b1_6 * resultY)) / a1_6;
+            }
         }
         static void Main(string[] args)
         {
@@ -98,11 +108,14 @@ namespace ConsoleApp3
                             Console.WriteLine("Введите скорость 2 автомобиля:");
                             read = Console.ReadLine();
                             double V_2 = double.Parse(read);
+                            Console.WriteLine("Расстояние между ними:");
+                            read = Console.ReadLine();
+                            double S_2 = double.Parse(read);
                             Console.WriteLine("Введите время, которое они едут:");
                             read = Console.ReadLine();
                             double T = double.Parse(read);
                             double result_4 = 0;
-                            Equation_4(V_1, V_2, T, ref result_4);//вызов метода с решением
+                            Equation_4(V_1, V_2, S_2, T, ref result_4);//вызов метода с решением
                             Console.WriteLine($"Расстояние между ними через {T} часа:{ result_4}");
                      break;
                         case 5:
