@@ -2,188 +2,188 @@ using System;
 using static System.Math;
 namespace ConsoleApp3
 {
-    class Program
-    {
-        private static void FIRST(double a_1, double b_1, ref string result1)//1 задание
+        class Program
         {
-            if ((a_1>2)&&(b_1 <= 3))
+            private static void FIRST(double a_1, double b_1, ref string result1)//1 задание
             {
-                result1 = "Да";
-            }
-            else result1 = "Нет";
-
-        }
-        private static void SECOND(double a_2, double b_2, double c_2, ref string result2)//2 задание
-        {
-            if ((a_2<b_2)&&(b_2<c_2))
-            {
-                result2 = "Да";
-            }
-            else result2 = "Нет";
-
-        }
-        private static void THIRD(double a_3, ref string result3)//3 задание
-        {
-            if (((a_3/10)>=1) && ((a_3/10)<=9.9))
-            {
-                if (a_3 % 2 == 0)
+                if ((a_1 > 2) && (b_1 <= 3))
                 {
-                    result3 = "Да";
+                    result1 = "Да";
+                }
+                else result1 = "Нет";
+
+            }
+            private static void SECOND(double a_2, double b_2, double c_2, ref string result2)//2 задание
+            {
+                if ((a_2 < b_2) && (b_2 < c_2))
+                {
+                    result2 = "Да";
+                }
+                else result2 = "Нет";
+
+            }
+            private static void THIRD(double a_3, ref string result3)//3 задание
+            {
+                if (((a_3 / 10) >= 1) && ((a_3 / 10) <= 9.9))
+                {
+                    if (a_3 % 2 == 0)
+                    {
+                        result3 = "Да";
+                    }
+                    else result3 = "Нет";
                 }
                 else result3 = "Нет";
             }
-            else result3 = "Нет";
-        }
-        private static void FOURTH(double a4, ref string result4)
-        {
-            var x = a4%10;
-            var y = (Math.Floor(a4/10)%10);
-            var z = Math.Floor(a4 / 100);
-            if (((x>y)&&(y>z)) || ((z > y) && (y > x)))
+            private static void FOURTH(double a4, ref string result4)
             {
-                result4 = "Да";
-            }
-            else result4 = "Нет";
-        }
-        private static void FIFTH(double a5, ref string result5)
-        {
-            var x = a5 % 10;
-            var y = (Math.Floor(a5 / 10) % 10);
-            var z = Math.Floor(a5 / 100) % 10;
-            var j = Math.Floor(a5 / 1000);
-            if ((j == x)&&(z==y))
-            {
-                result5 = "Да";
-            }
-            else result5 = "Нет";
-        }
-        private static void SIXTH(double a6, double b6, double c6, ref string result6)
-        {
-            if ((Math.Sqrt(a6*a6+b6*b6) == c6) || (Math.Sqrt(a6 * a6 + c6 * c6) == b6) || (Math.Sqrt(b6 * b6 + c6 * c6) == a6))
-            {
-                result6 = "Да";
-            }
-            else result6 = "Нет";
-        }
-        private static void SEVENTH(double a7, double b7, double c7, ref string result7)
-        {
-            if ((a7 + b7 > c7) && (a7 + c7 > b7) && (b7 + c7 > a7))
-            {
-                result7 = "Да";
-            }
-            else result7 = "Нет";
-        }
-        static void Main(string[] args)
-        {
-            while (true)//бесконечный цикл, чтобы не завершалось
-            {
-                var wrongInput = true;
-                Console.WriteLine("Введите номер задания");
-                var input = Console.ReadLine();
-                int numberOfTask;
-                double numberProverka;
-                if (input == "нет")//проверка на заверешние работы пользователем
+                var x = a4 % 10;
+                var y = (Math.Floor(a4 / 10) % 10);
+                var z = Math.Floor(a4 / 100);
+                if (((x > y) && (y > z)) || ((z > y) && (y > x)))
                 {
-                    break;
+                    result4 = "Да";
                 }
-                if (!Int32.TryParse(input, out numberOfTask))
+                else result4 = "Нет";
+            }
+            private static void FIFTH(double a5, ref string result5)
+            {
+                var x = a5 % 10;
+                var y = (Math.Floor(a5 / 10) % 10);
+                var z = Math.Floor(a5 / 100) % 10;
+                var j = Math.Floor(a5 / 1000);
+                if ((j == x) && (z == y))
                 {
-                    if (!Double.TryParse(input, out numberProverka))
-                    {
-                        Console.WriteLine("сказано же вводить числа!!!");
-                    }
-                    else Console.WriteLine("номера задания не дробные)");
-                    wrongInput = false;
+                    result5 = "Да";
                 }
-                if (wrongInput)
+                else result5 = "Нет";
+            }
+            private static void SIXTH(double a6, double b6, double c6, ref string result6)
+            {
+                if ((Math.Sqrt(a6 * a6 + b6 * b6) == c6) || (Math.Sqrt(a6 * a6 + c6 * c6) == b6) || (Math.Sqrt(b6 * b6 + c6 * c6) == a6))
                 {
-                    numberOfTask = Int32.Parse(input);
-                    switch (numberOfTask)
+                    result6 = "Да";
+                }
+                else result6 = "Нет";
+            }
+            private static void SEVENTH(double a7, double b7, double c7, ref string result7)
+            {
+                if ((a7 + b7 > c7) && (a7 + c7 > b7) && (b7 + c7 > a7))
+                {
+                    result7 = "Да";
+                }
+                else result7 = "Нет";
+            }
+            static void Main(string[] args)
+            {
+                while (true)//бесконечный цикл, чтобы не завершалось
+                {
+                    var wrongInput = true;
+                    Console.WriteLine("Введите номер задания");
+                    var input = Console.ReadLine();
+                    int numberOfTask;
+                    double numberProverka;
+                    if (input == "нет")//проверка на заверешние работы пользователем
                     {
-                        case 1:
-                            Console.WriteLine("Введите число А");
-                            var read = Console.ReadLine();
-                            double a_1 = double.Parse(read);
-                            Console.WriteLine("Введите число В");
-                            read = Console.ReadLine();
-                            double b_1 = double.Parse(read);
-                            string result1 = "";
-                            FIRST(a_1, b_1, ref result1);
-                            Console.WriteLine($"{result1}");
-                            break;
-                        case 2:
-                            Console.WriteLine("Введите число А");
-                            read = Console.ReadLine();
-                            double a_2 = double.Parse(read);
-                            Console.WriteLine("Введите число В");
-                            read = Console.ReadLine();
-                            double b_2 = double.Parse(read);
-                            Console.WriteLine("Введите число С");
-                            read = Console.ReadLine();
-                            double с_2 = double.Parse(read);
-                            string result2 = "";
-                            SECOND(a_2, b_2, с_2, ref result2);
-                            Console.WriteLine($"{result2}");
-                            break;
-                        case 3:
-                            Console.WriteLine("Введите число А");
-                            read = Console.ReadLine();
-                            double a_3 = double.Parse(read);
-                            string result3 = "";
-                            THIRD(a_3, ref result3);//вызов метода с решением
-                            Console.WriteLine($"{result3}");//вывод результата
-                            break;
-                        case 4:
-                            Console.WriteLine("Введите число");
-                            read = Console.ReadLine();
-                            double a4 = double.Parse(read); 
-                            string result4 = "";
-                            FOURTH(a4, ref result4);//вызов метода с решением
-                            Console.WriteLine($"{result4}");
-                            break;
-                        case 5:
-                            Console.WriteLine("Введите значение A:");
-                            read = Console.ReadLine();
-                            double a5 = double.Parse(read);        
-                            string result5 = "";
-                            FIFTH(a5, ref result5);//вызов метода с решением
-                            Console.WriteLine($"{result5}");//вывод результата
-                            break;
-                        case 6:
-                            Console.WriteLine("Введите значение A:");
-                            read = Console.ReadLine();
-                            double a6 = double.Parse(read);
-                            Console.WriteLine("Введите значение B:");
-                            read = Console.ReadLine();
-                            double b6 = double.Parse(read);
-                            Console.WriteLine("Введите значение C:");
-                            read = Console.ReadLine();
-                            double c6 = double.Parse(read);        
-                            string result6 = "";
-                            SIXTH(a6, b6, c6, ref result6);//вызов метода с решением
-                            Console.WriteLine($"Прямоугольный:{result6}");//вывод результата
-                            break;
-                        case 7:
-                            Console.WriteLine("Введите значение A:");
-                            read = Console.ReadLine();
-                            double a7 = double.Parse(read);
-                            Console.WriteLine("Введите значение B:");
-                            read = Console.ReadLine();
-                            double b7 = double.Parse(read);
-                            Console.WriteLine("Введите значение C:");
-                            read = Console.ReadLine();
-                            double c7 = double.Parse(read);
-                            string result7 = "";
-                            SIXTH(a7, b7, c7, ref result7);//вызов метода с решением
-                            Console.WriteLine($"Треугольник?:{result7}");//вывод результата
-                            break;
+                        break;
                     }
-                    if ((numberOfTask < 1) || (numberOfTask > 7))
+                    if (!Int32.TryParse(input, out numberOfTask))
                     {
-                        Console.WriteLine("В лабораторной работе номер 7 всего 6 заданий!!!"); //вывод сообщения с ошибкой
+                        if (!Double.TryParse(input, out numberProverka))
+                        {
+                            Console.WriteLine("сказано же вводить числа!!!");
+                        }
+                        else Console.WriteLine("номера задания не дробные)");
+                        wrongInput = false;
+                    }
+                    if (wrongInput)
+                    {
+                        numberOfTask = Int32.Parse(input);
+                        switch (numberOfTask)
+                        {
+                            case 1:
+                                Console.WriteLine("Введите число А");
+                                var read = Console.ReadLine();
+                                double a_1 = double.Parse(read);
+                                Console.WriteLine("Введите число В");
+                                read = Console.ReadLine();
+                                double b_1 = double.Parse(read);
+                                string result1 = "";
+                                FIRST(a_1, b_1, ref result1);
+                                Console.WriteLine($"A > 2 и B ≤ 3? {result1}");
+                                break;
+                            case 2:
+                                Console.WriteLine("Введите число А");
+                                read = Console.ReadLine();
+                                double a_2 = double.Parse(read);
+                                Console.WriteLine("Введите число В");
+                                read = Console.ReadLine();
+                                double b_2 = double.Parse(read);
+                                Console.WriteLine("Введите число С");
+                                read = Console.ReadLine();
+                                double с_2 = double.Parse(read);
+                                string result2 = "";
+                                SECOND(a_2, b_2, с_2, ref result2);
+                                Console.WriteLine($"Справедливо двойное неравенство A < B < C? {result2}");
+                                break;
+                            case 3:
+                                Console.WriteLine("Введите число А");
+                                read = Console.ReadLine();
+                                double a_3 = double.Parse(read);
+                                string result3 = "";
+                                THIRD(a_3, ref result3);//вызов метода с решением
+                                Console.WriteLine($"Данное число является четным двузначным? {result3}");//вывод результата
+                                break;
+                            case 4:
+                                Console.WriteLine("Введите число");
+                                read = Console.ReadLine();
+                                double a4 = double.Parse(read);
+                                string result4 = "";
+                                FOURTH(a4, ref result4);//вызов метода с решением
+                                Console.WriteLine($"Цифры данного числа образуют возрастающую или убывающую последовательность?{result4}");
+                                break;
+                            case 5:
+                                Console.WriteLine("Введите значение A:");
+                                read = Console.ReadLine();
+                                double a5 = double.Parse(read);
+                                string result5 = "";
+                                FIFTH(a5, ref result5);//вызов метода с решением
+                                Console.WriteLine($"Данное число читается одинаково слева направо и справа налево? {result5}");//вывод результата
+                                break;
+                            case 6:
+                                Console.WriteLine("Введите значение A:");
+                                read = Console.ReadLine();
+                                double a6 = double.Parse(read);
+                                Console.WriteLine("Введите значение B:");
+                                read = Console.ReadLine();
+                                double b6 = double.Parse(read);
+                                Console.WriteLine("Введите значение C:");
+                                read = Console.ReadLine();
+                                double c6 = double.Parse(read);
+                                string result6 = "";
+                                SIXTH(a6, b6, c6, ref result6);//вызов метода с решением
+                                Console.WriteLine($"Прямоугольный?:{result6}");//вывод результата
+                                break;
+                            case 7:
+                                Console.WriteLine("Введите значение A:");
+                                read = Console.ReadLine();
+                                double a7 = double.Parse(read);
+                                Console.WriteLine("Введите значение B:");
+                                read = Console.ReadLine();
+                                double b7 = double.Parse(read);
+                                Console.WriteLine("Введите значение C:");
+                                read = Console.ReadLine();
+                                double c7 = double.Parse(read);
+                                string result7 = "";
+                                SEVENTH(a7, b7, c7, ref result7);//вызов метода с решением
+                                Console.WriteLine($"Треугольник?:{result7}");//вывод результата
+                                break;
+                        }
+                        if ((numberOfTask < 1) || (numberOfTask > 7))
+                        {
+                            Console.WriteLine("В лабораторной работе номер 7 всего 6 заданий!!!"); //вывод сообщения с ошибкой
+                        }
                     }
                 }
             }
         }
     }
-}
