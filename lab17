@@ -1,0 +1,209 @@
+using System;
+using static System.Math;
+namespace ConsoleApp3
+{
+    class Program
+    {
+        private static void FIRST(int N1, int K1, int L1, ref double result1)//1 задание
+        {
+            int i = 0;
+            int[] array = new int[N1];
+            while (i < N1)
+            {
+                Console.WriteLine("Введите элемент массива");
+                array[i] = int.Parse(Console.ReadLine());
+                i++;
+            }
+            for (i = K1-1; i <= L1-1; i++)
+            {
+                result1 += array[i];
+            }
+        }
+        private static void SECOND(int N2, ref double result2)//2 задание
+        {
+            bool arifm = true;
+            int i = 0;
+            int[] array = new int[N2];
+            while (i < N2)
+            {
+                Console.WriteLine("Введите элемент массива");
+                array[i] = int.Parse(Console.ReadLine());
+                i++;
+            }
+            while (arifm==true)
+            {
+                for (i = 1; i <= N2 - 2; i++)
+                {
+                    if (array[i] - array[i - 1] == array[i + 1] - array[i])
+                    {
+                        result2 = array[i] - array[i - 1];
+                    }
+                    else
+                    {
+                        result2 = 0;
+                        arifm = false;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        private static void THIRD(int N3, ref int result3)//3 задание
+        {
+            int i = 0;
+            int[] array = new int[N3];
+            while (i < N3)
+            {
+                Console.WriteLine("Введите элемент массива");
+                array[i] = int.Parse(Console.ReadLine());
+                i++;
+            }
+            if (N3%2==0)
+            {
+                for (i=2; i<=N3-2; i+=2)
+                {
+                    if (result3 > array[i])
+                        result3 = array[i];
+                }
+            }
+            else
+            {
+                for (i=2; i<=N3-1; i+=2)
+                {
+                    if (result3 > array[i])
+                        result3 = array[i];
+                }
+            }
+        }
+        private static void FOURTH(int N4, ref int result4)//4 задание
+        {
+            int i = 0;
+            int[] array = new int[N4];
+            while (i < N4)
+            {
+                Console.WriteLine("Введите элемент массива");
+                array[i] = int.Parse(Console.ReadLine());
+                i++;
+            }
+            for (i=N4-2; i>=1; i--)
+            {
+                if ((array[i]>array[i+1]) && (array[i] > array[i - 1]))
+                {
+                    result4 = i;
+                    break;
+                }
+            }
+        }
+        private static void FIFTH(int N5, ref int result5, ref int result5_1)//5 задание
+        {
+            int i = 0;
+            int[] array = new int[N5];
+            while (i < N5)
+            {
+                Console.WriteLine("Введите элемент массива");
+                array[i] = int.Parse(Console.ReadLine());
+                i++;
+            }
+            for (int k=0; k<=N5-1;k++)
+            {
+                for (i=k+1; i<=N5-1;i++)
+                {
+                    if (array[i]==array[k])
+                    {
+                        result5 = k;
+                        result5_1 = i;
+                    }
+                }
+            }
+        }
+        static void Main(string[] args)
+        {
+            while (true)//бесконечный цикл, чтобы не завершалось
+            {
+                var wrongInput = true;
+                Console.WriteLine("Введите номер задания");
+                var input = Console.ReadLine();
+                int numberOfTask;
+                double numberProverka;
+                if (input == "нет")//проверка на заверешние работы пользователем
+                {
+                    break;
+                }
+                if (!Int32.TryParse(input, out numberOfTask))
+                {
+                    if (!Double.TryParse(input, out numberProverka))
+                    {
+                        Console.WriteLine("сказано же вводить числа!!!");
+                    }
+                    else Console.WriteLine("номера задания не дробные)");
+                    wrongInput = false;
+                }
+                if (wrongInput)
+                {
+                    numberOfTask = Int32.Parse(input);
+                    switch (numberOfTask)
+                    {
+                        case 1:
+                            Console.WriteLine("Введите количество элементов массива:");
+                            var read = Console.ReadLine();
+                            int N1 = int.Parse(read);
+                            Console.WriteLine("Введите Элемент K:");
+                            read = Console.ReadLine();
+                            int K1 = int.Parse(read);
+                            Console.WriteLine("Введите элемент L:");
+                            read = Console.ReadLine();
+                            int L1 = int.Parse(read);
+                            double result1 = 0;
+                            FIRST(N1, K1, L1, ref result1);
+                            Console.WriteLine($"Среднее арифметическое между K и L равно:{result1}");
+                            break;
+                        case 2:
+                            Console.WriteLine("Введите количество элементов массива:");
+                            read = Console.ReadLine();
+                            int N2 = int.Parse(read);
+                            double result2 = 0;
+                            SECOND(N2, ref result2);
+                            if (result2 == 0)
+                            {
+                                Console.WriteLine($"{result2}");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Разность этого массива равн: {result2}");
+                            }
+                            break;
+                        case 3:
+                            Console.WriteLine("Введите количество элементов массива:");
+                            read = Console.ReadLine();
+                            int N3 = int.Parse(read);   
+                            int result3 = 9999999;
+                            THIRD(N3, ref result3);//вызов метода с решением
+                            Console.WriteLine($"Минимальное значение четных элементов:{result3}");//вывод результата
+                            break;
+                        case 4:
+                            Console.WriteLine("Введите количество элементов массива:");
+                            read = Console.ReadLine();
+                            int N4 = int.Parse(read);
+                            int result4 = 0;
+                            FOURTH(N4, ref result4);//вызов метода с решением
+                            Console.WriteLine($"Последний элемент локального максимума:{result4}");//вывод результата
+                            break;
+                        case 5:
+                            Console.WriteLine("Введите количество элементов массива:");
+                            read = Console.ReadLine();
+                            int N5 = int.Parse(read);
+                            int result5 = 0;
+                            int result5_1 = 0;
+                            FIFTH(N5, ref result5, ref result5_1);//вызов метода с решением
+                            Console.WriteLine($"Номера равных элементов:{result5} {result5_1}");//вывод результата
+                            break;
+                    }
+                    if ((numberOfTask < 1) || (numberOfTask > 7))
+                    {
+                        Console.WriteLine("В лабораторной работе номер 7 всего 6 заданий!!!"); //вывод сообщения с ошибкой
+                    }
+                }
+            }
+        }
+    }
+}
