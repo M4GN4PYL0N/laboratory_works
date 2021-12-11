@@ -1,0 +1,259 @@
+using System;
+using static System.Math;
+namespace ConsoleApp3
+{
+    class Program
+    {
+        private static void FIRST(double a_1, double b_1, ref double result1, ref double result1_2)//1 задание
+        {
+            if (a_1==b_1)
+            {
+                result1 = 0;
+                result1_2 = 0;
+            }
+            else
+            {
+                if (a_1>b_1)
+                {
+                    result1 = a_1;
+                    result1_2 = a_1;
+                }
+                else
+                {
+                    result1 = b_1;
+                    result1_2 = b_1;
+                }
+            }
+
+        }
+        private static void SECOND(double a_2, double b_2, double c_2, ref double result2)//2 задание
+        {
+            double bol1 = 0;
+            double bol2 = 0;
+            if ((a_2>b_2)&&(a_2>c_2))
+            {
+                bol1 = a_2;
+                if (b_2 > c_2)
+                {
+                    bol2 = b_2;
+                }
+                else bol2 = c_2;
+            }
+            if ((c_2 > a_2) && (c_2 > b_2))
+            {
+                bol1 = c_2;
+                if (b_2 > a_2)
+                {
+                    bol2 = b_2;
+                }
+                else bol2 = a_2;
+            }
+            if ((b_2 > a_2) && (b_2 > c_2))
+            {
+                bol1 = b_2;
+                if (a_2 > c_2)
+                {
+                    bol2 = a_2;
+                }
+                else bol2 = c_2;
+            }
+            result2 = bol1 + bol2;
+        }
+        private static void THIRD(double a_3x, double a_3y, double b_3x, double b_3y, double c_3x, double c_3y, ref string tochka, ref double result3)//3 задание
+        {
+            double rasst1 = Math.Sqrt(((b_3x - a_3x) * (b_3x - a_3x)) + ((b_3y - a_3y) * (b_3y - a_3y)));
+            double rasst2 = Math.Sqrt(((c_3x - a_3x) * (c_3x - a_3x)) + ((c_3y - a_3y) * (c_3y - a_3y)));
+            if (rasst1<rasst2)
+            {
+                tochka = "B";
+                result3 = rasst1;
+            }
+            else
+            {
+                tochka = "C";
+                result3 = rasst2;
+            }
+        }
+        private static void FOURTH(double a_4x, double a_4y, ref double result4)
+        {
+            if ((a_4x>0)&&(a_4y>0))
+            {
+                result4 = 1;
+            }
+            if ((a_4x < 0) && (a_4y > 0))
+            {
+                result4 = 2;
+            }
+            if ((a_4x < 0) && (a_4y < 0))
+            {
+                result4 = 3;
+            }
+            if ((a_4x > 0) && (a_4y < 0))
+            {
+                result4 = 4;
+            }
+        }
+        private static void FIFTH(double a5, ref string result5, ref string result5_1)
+        {
+            if (a5%2==0)
+            {
+                result5_1 = "четное";
+            }
+            else result5_1 = "нечетное";
+            if (a5==0)
+            {
+                result5 = "нулевое число";
+                result5_1 = "";
+            }
+            else if (a5>0)
+            {
+                result5 = "положительное";
+            }
+            else if (a5<0)
+            {
+                result5 = "отрицательное";
+            }
+        }
+        private static void SIXTH(double a6, ref string result6, ref string result6_1)
+        {
+            if (a6%2==0)
+            {
+                result6_1 = "Четное";
+            }
+            else result6_1 = "Нечетное";
+            double k = a6;
+            int i = 0;
+            while (k!=0)
+            {
+                k = Math.Floor(k / 10);
+                i++;
+            }
+            if (i==1)
+            {
+                result6 = "однозначное";
+            }
+            if (i == 2)
+            {
+                result6 = "двузначное";
+            }
+            if (i == 3)
+            {
+                result6 = "трехзначное";
+            }
+        }
+        static void Main(string[] args)
+        {
+            while (true)//бесконечный цикл, чтобы не завершалось
+            {
+                var wrongInput = true;
+                Console.WriteLine("Введите номер задания");
+                var input = Console.ReadLine();
+                int numberOfTask;
+                double numberProverka;
+                if (input == "нет")//проверка на заверешние работы пользователем
+                {
+                    break;
+                }
+                if (!Int32.TryParse(input, out numberOfTask))
+                {
+                    if (!Double.TryParse(input, out numberProverka))
+                    {
+                        Console.WriteLine("сказано же вводить числа!!!");
+                    }
+                    else Console.WriteLine("номера задания не дробные)");
+                    wrongInput = false;
+                }
+                if (wrongInput)
+                {
+                    numberOfTask = Int32.Parse(input);
+                    switch (numberOfTask)
+                    {
+                        case 1:
+                            Console.WriteLine("Введите число А");
+                            var read = Console.ReadLine();
+                            double a_1 = double.Parse(read);
+                            Console.WriteLine("Введите число В");
+                            read = Console.ReadLine();
+                            double b_1 = double.Parse(read);
+                            double result1 = 0;
+                            double result1_2 = 0;
+                            FIRST(a_1, b_1, ref result1, ref result1_2);
+                            Console.WriteLine($"A={result1}\nB={result1_2}");
+                            break;
+                        case 2:
+                            Console.WriteLine("Введите число А");
+                            read = Console.ReadLine();
+                            double a_2 = double.Parse(read);
+                            Console.WriteLine("Введите число В");
+                            read = Console.ReadLine();
+                            double b_2 = double.Parse(read);
+                            Console.WriteLine("Введите число С");
+                            read = Console.ReadLine();
+                            double с_2 = double.Parse(read);
+                            double result2 = 0;
+                            SECOND(a_2, b_2, с_2, ref result2);
+                            Console.WriteLine($"Сумма больших чисел равна:{result2}");
+                            break;
+                        case 3:
+                            Console.WriteLine("Введите координату X точки A");
+                            read = Console.ReadLine();
+                            double a_3x = double.Parse(read);
+                            Console.WriteLine("Введите координату Y точки A");
+                            read = Console.ReadLine();
+                            double a_3y = double.Parse(read);
+                            Console.WriteLine("Введите координату X точки В");
+                            read = Console.ReadLine();
+                            double b_3x = double.Parse(read);
+                            Console.WriteLine("Введите координату Y точки В");
+                            read = Console.ReadLine();
+                            double b_3y = double.Parse(read);
+                            Console.WriteLine("Введите координату X точки С");
+                            read = Console.ReadLine();
+                            double с_3x = double.Parse(read);
+                            Console.WriteLine("Введите координату Y точки С");
+                            read = Console.ReadLine();
+                            double c_3y = double.Parse(read);
+                            double result3 = 0;
+                            string tochka = "";
+                            THIRD(a_3x, a_3y, b_3x, b_3y, с_3x, c_3y,ref tochka, ref result3);
+                            Console.WriteLine($"Точка {tochka} ближе к А и расстояние до нее до А:{result3}");
+                            break;
+                        case 4:
+                            Console.WriteLine("Введите координату X точки A");
+                            read = Console.ReadLine();
+                            double a_4x = double.Parse(read);
+                            Console.WriteLine("Введите координату Y точки A");
+                            read = Console.ReadLine();
+                            double a_4y = double.Parse(read);
+                            double result4 = 0;
+                            FOURTH(a_4x, a_4y, ref result4);//вызов метода с решением
+                            Console.WriteLine($"Номер координатной четверти: {result4}");
+                            break;
+                        case 5:
+                            Console.WriteLine("Введите значение A:");
+                            read = Console.ReadLine();
+                            double a5 = double.Parse(read);        
+                            string result5 = "";
+                            string result5_1 = "";
+                            FIFTH(a5, ref result5, ref result5_1);//вызов метода с решением
+                            Console.WriteLine($"{result5_1} {result5}");//вывод результата
+                            break;
+                        case 6:
+                            Console.WriteLine("Введите значение A:");
+                            read = Console.ReadLine();
+                            double a6 = double.Parse(read);
+                            string result6 = "";
+                            string result6_1 = "";
+                            SIXTH(a6, ref result6, ref result6_1);//вызов метода с решением
+                            Console.WriteLine($"{result6_1} {result6}");//вывод результата
+                            break;
+                    }
+                    if ((numberOfTask < 1) || (numberOfTask > 7))
+                    {
+                        Console.WriteLine("В лабораторной работе номер 7 всего 6 заданий!!!"); //вывод сообщения с ошибкой
+                    }
+                }
+            }
+        }
+    }
+}
