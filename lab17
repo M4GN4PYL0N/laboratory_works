@@ -6,6 +6,7 @@ namespace ConsoleApp3
     {
         private static void FIRST(int N1, int K1, int L1, ref double result1)//1 задание
         {
+            int k = 0;
             int i = 0;
             int[] array = new int[N1];
             while (i < N1)
@@ -14,10 +15,12 @@ namespace ConsoleApp3
                 array[i] = int.Parse(Console.ReadLine());
                 i++;
             }
-            for (i = K1-1; i <= L1-1; i++)
+            for (i = K1 - 1; i <= L1 - 1; i++)
             {
                 result1 += array[i];
+                k++;
             }
+            result1 = result1 / k;
         }
         private static void SECOND(int N2, ref double result2)//2 задание
         {
@@ -30,7 +33,7 @@ namespace ConsoleApp3
                 array[i] = int.Parse(Console.ReadLine());
                 i++;
             }
-            while (arifm==true)
+            while (arifm)
             {
                 for (i = 1; i <= N2 - 2; i++)
                 {
@@ -58,9 +61,9 @@ namespace ConsoleApp3
                 array[i] = int.Parse(Console.ReadLine());
                 i++;
             }
-            if (N3%2==0)
+            if (N3 % 2 == 0)
             {
-                for (i=2; i<=N3-2; i+=2)
+                for (i = 1; i <= N3; i += 2)
                 {
                     if (result3 > array[i])
                         result3 = array[i];
@@ -68,7 +71,7 @@ namespace ConsoleApp3
             }
             else
             {
-                for (i=2; i<=N3-1; i+=2)
+                for (i = 1; i <= N3 - 1; i += 2)
                 {
                     if (result3 > array[i])
                         result3 = array[i];
@@ -85,12 +88,24 @@ namespace ConsoleApp3
                 array[i] = int.Parse(Console.ReadLine());
                 i++;
             }
-            for (i=N4-2; i>=1; i--)
+            if (array[N4 - 1] > array[N4 - 2])
             {
-                if ((array[i]>array[i+1]) && (array[i] > array[i - 1]))
+                result4 = N4;
+            }
+            else
+            {
+                for (i = N4 - 2; i >= 0; i--)
                 {
-                    result4 = i;
-                    break;
+                    if (i == 0)
+                    {
+                        result4 = 1;
+                        break;
+                    }
+                    if ((array[i] > array[i + 1]) && (array[i] > array[i - 1]))
+                    {
+                        result4 = i;
+                        break;
+                    }
                 }
             }
         }
@@ -104,14 +119,14 @@ namespace ConsoleApp3
                 array[i] = int.Parse(Console.ReadLine());
                 i++;
             }
-            for (int k=0; k<=N5-1;k++)
+            for (int k = 0; k <= N5 - 1; k++)
             {
-                for (i=k+1; i<=N5-1;i++)
+                for (i = k + 1; i <= N5 - 1; i++)
                 {
-                    if (array[i]==array[k])
+                    if (array[i] == array[k])
                     {
-                        result5 = k;
-                        result5_1 = i;
+                        result5 = k+1;
+                        result5_1 = i+1;
                     }
                 }
             }
@@ -169,13 +184,13 @@ namespace ConsoleApp3
                             }
                             else
                             {
-                                Console.WriteLine($"Разность этого массива равн: {result2}");
+                                Console.WriteLine($"Разность этого массива равна: {result2}");
                             }
                             break;
                         case 3:
                             Console.WriteLine("Введите количество элементов массива:");
                             read = Console.ReadLine();
-                            int N3 = int.Parse(read);   
+                            int N3 = int.Parse(read);
                             int result3 = 9999999;
                             THIRD(N3, ref result3);//вызов метода с решением
                             Console.WriteLine($"Минимальное значение четных элементов:{result3}");//вывод результата
@@ -186,7 +201,7 @@ namespace ConsoleApp3
                             int N4 = int.Parse(read);
                             int result4 = 0;
                             FOURTH(N4, ref result4);//вызов метода с решением
-                            Console.WriteLine($"Последний элемент локального максимума:{result4}");//вывод результата
+                            Console.WriteLine($"Номер последнего элемента локального максимума:{result4}");//вывод результата
                             break;
                         case 5:
                             Console.WriteLine("Введите количество элементов массива:");
